@@ -2,37 +2,41 @@
 
 ## Phase 0 — Foundation (Now)
 
-- Establish `core`, `sdk`, and `meta` repositories
-- Lock architecture baseline and naming conventions
-- Ship first stable API + SDK contracts
+- Establish `core`, `sdk`, and `meta`
+- Lock naming, architectural boundaries, and invariant definitions
+- Ship first protocol-safe runtime + baseline SDK
 
-## Phase 1 — Protocol Hardening
+## Phase 1 — Agent Runtime Hardening
 
-- Replace in-memory components in `core` with production adapters
-- Add persistence, observability, and fault tolerance
-- Publish compatibility matrix (`core` ↔ `sdk`)
+- Add mission envelopes and context persistence in `core`
+- Add event inbox/outbox semantics and replayable journals
+- Publish capability policy model for autonomous action control
+- Publish compatibility matrix (`core` <-> `sdk`)
 
-## Phase 2 — On-chain + Data Plane
+## Phase 2 — Trust and Settlement Expansion
 
-- Launch `contracts` for escrow, settlement, and protocol assets
-- Launch `indexer` for event streams and analytics APIs
-- Introduce chain state reconciliation and audit pipelines
+- Production adapters for storage, queues, and observability
+- On-chain contract integration (`contracts` repo)
+- Challenge/appeal and dispute pathways for validator disagreement
+- Chain reconciliation and settlement audit pipelines
 
-## Phase 3 — Developer Growth
+## Phase 3 — Agent Developer Growth
 
-- Launch `examples` repository (templates and starter kits)
-- Add framework-specific SDK adapters (Next.js, NestJS, Workers)
-- Expand agent-native integrations and marketplace plugins
+- Launch `examples` with worker/validator agent templates
+- Add SDK modules: mission/events/policy/evidence/agent runtime
+- Framework adapters (Next.js, NestJS, Workers)
+- Multi-language SDK strategy planning
 
-## Phase 4 — Network Effects
+## Phase 4 — Network Effects and Governance
 
-- Multi-tenant validator orchestration
-- Reputation graph analytics
-- Governance process and protocol upgrade pipeline
+- Multi-tenant validator market and quality scoring
+- Reputation graph analytics and fraud intelligence
+- Governance process and upgrade pipeline
+- Institutional onboarding standards and compliance profiles
 
 ## Guiding Principle
 
-PACT should evolve from a product into infrastructure:
+PACT should evolve from an app feature set into agent-era infrastructure:
 
 - **Reliable enough for institutions**
 - **Simple enough for independent builders**

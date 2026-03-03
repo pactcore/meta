@@ -1,63 +1,59 @@
 # PACT Meta
 
-PACT Meta is the strategic entrypoint of the PACT ecosystem.
-It explains how protocol execution, developer tooling, and future network components fit together.
+PACT Meta is the strategic repo of the PACT ecosystem.
+It defines how protocol execution, agent tooling, and ecosystem expansion fit into one coherent direction.
 
 ## Repositories
 
 - [`pactcore/core`](https://github.com/pactcore/core)
-  - Protocol engine: domain rules, lifecycle orchestration, validation, settlement.
+  - Protocol engine: lifecycle invariants, validation, matching, reputation, settlement.
 - [`pactcore/sdk`](https://github.com/pactcore/sdk)
-  - Developer integration layer: typed client, app/agent tooling, integration abstractions.
-- `pactcore/meta` (this repo)
-  - Vision, architecture narrative, ecosystem roadmap, cross-repo standards.
+  - Agent-builder toolkit: typed client plus future mission/event/policy runtimes.
+- [`pactcore/meta`](https://github.com/pactcore/meta) (this repo)
+  - Standards, principles, roadmap, and cross-repo governance.
 
-## Narrative: From Tasks to Trust Infrastructure
+## Narrative: Coordination Infrastructure for AI Agents
 
-PACT starts as a task marketplace protocol and evolves into a trust coordination network:
+PACT evolves from a task protocol into a trust runtime for autonomous systems:
 
-1. **Execution** (`core`): deterministic protocol behavior
-2. **Adoption** (`sdk`): low-friction integrations for builders
-3. **Expansion** (future repos): indexers, contracts, governance, analytics, agent frameworks
+1. **Execution truth** (`core`) — deterministic rules and settlement outcomes
+2. **Agent productivity** (`sdk`) — practical runtime tools for builders
+3. **Strategic coherence** (`meta`) — shared standards and long-horizon roadmap
 
-In short: **core defines truth, sdk scales reach, meta defines direction**.
+In short: **core defines truth, sdk scales intelligence, meta aligns the ecosystem**.
 
 ## Ecosystem Blueprint
 
 ```text
             ┌────────────────────┐
             │    pactcore/meta   │
-            │ vision + standards │
+            │ standards + vision │
             └─────────┬──────────┘
                       │
       ┌───────────────┴───────────────┐
       │                               │
 ┌─────▼─────┐                   ┌─────▼─────┐
 │   core    │                   │    sdk    │
-│ protocol  │                   │ developer │
-│ runtime   │                   │ surface   │
+│ protocol  │                   │ agent dev │
+│ runtime   │                   │ runtime   │
 └─────┬─────┘                   └─────┬─────┘
       │                               │
       └───────────────┬───────────────┘
                       │
             ┌─────────▼─────────┐
-            │ Ecosystem Apps &  │
-            │ Agent Integrators │
+            │ Apps / Agents /   │
+            │ Institutional Ops │
             └───────────────────┘
 ```
 
-## Standards in This Repo
+## Documents in This Repo
 
-- Naming conventions
-- Cross-repo version compatibility policy
-- Documentation and release standards
-- Long-term roadmap and milestones
+- `docs/roadmap.md`
+- `docs/agent-product-principles.md`
 
 ## Next Suggested Repositories
 
 - `pactcore/contracts` (on-chain contracts)
-- `pactcore/indexer` (event ingestion and query layer)
-- `pactcore/examples` (reference integrations)
-- `pactcore/governance` (tokenomics and protocol governance specs)
-
-See [`docs/roadmap.md`](./docs/roadmap.md) for phased milestones.
+- `pactcore/indexer` (event ingestion + query layer)
+- `pactcore/examples` (reference agent integrations)
+- `pactcore/governance` (tokenomics and protocol governance)
