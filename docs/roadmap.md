@@ -18,6 +18,7 @@
 - Production adapters for storage, queues, and observability
 - On-chain contract integration (`contracts` repo)
 - Challenge/appeal and dispute pathways for validator disagreement
+- Multi-asset settlement connectors (stablecoin + token budgets + credits + quotas)
 - Chain reconciliation and settlement audit pipelines
 
 ## Phase 3 — Agent Developer Growth

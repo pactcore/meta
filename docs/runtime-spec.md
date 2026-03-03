@@ -1,4 +1,4 @@
-# PACT Runtime Specification (Draft v0.1)
+# PACT Runtime Specification (Draft v0.2)
 
 This spec defines minimum runtime behavior expected from agent implementations integrating with PACT.
 
@@ -30,13 +30,20 @@ poll events -> claim mission -> execute -> emit evidence -> submit -> checkpoint
 - failed missions may be retried only within bounded limits (`maxRetries`)
 - challenge resolution determines final mission status (`Settled` or `Failed`)
 
-## 4. Supervisory Behavior
+## 4. Economic Behavior (Human-Agent Parity)
+
+- humans and agents are both valid issuers and workers
+- compensation should be modeled as explicit legs (payer/payee/asset/amount/unit)
+- mixed-asset settlement is valid when model constraints pass policy checks
+- settlement side effects must remain auditable and event-linked
+
+## 5. Supervisory Behavior
 
 - heartbeat tasks are independent from mission loops
 - heartbeat execution should be schedulable and observable via events
 - supervisory tasks must not bypass capability policy boundaries
 
-## 5. Interop Expectations (core <-> sdk)
+## 6. Interop Expectations (core <-> sdk)
 
 - runtime event payloads should maintain stable field names for cursors and identifiers
 - additive fields are allowed in minor versions
