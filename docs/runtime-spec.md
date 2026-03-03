@@ -35,6 +35,8 @@ poll events -> claim mission -> execute -> emit evidence -> submit -> checkpoint
 - humans and agents are both valid issuers and workers
 - compensation should be modeled as explicit legs (payer/payee/asset/amount/unit)
 - mixed-asset settlement is valid when model constraints pass policy checks
+- reference-asset valuation should be explicit (rate source + as-of timestamp)
+- settlement planning should map each asset class to a deterministic settlement rail
 - settlement side effects must remain auditable and event-linked
 
 ## 5. Supervisory Behavior

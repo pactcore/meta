@@ -48,9 +48,17 @@ This model allows work markets where payment is aligned to task nature:
 - infra-heavy jobs -> cloud/API credit dominant
 - mixed jobs -> blended compensation models
 
-## 6) Next Governance Work
+## 6) Execution Primitives (v0.2.x trajectory)
 
-- valuation adapters across asset classes
+- asset registry
+- compensation model validation
+- grouped quote by asset
+- reference-asset valuation quote
+- settlement-rail planning by asset class
+
+## 7) Next Governance Work
+
+- production settlement connectors across asset classes
 - treasury policy by asset type
 - cross-asset fee logic
 - challenge anti-spam economics

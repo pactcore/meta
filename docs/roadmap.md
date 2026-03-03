@@ -19,6 +19,8 @@
 - On-chain contract integration (`contracts` repo)
 - Challenge/appeal and dispute pathways for validator disagreement
 - Multi-asset settlement connectors (stablecoin + token budgets + credits + quotas)
+- Cross-asset valuation adapters (reference quote + source-of-truth rates)
+- Deterministic settlement-rail planning by asset class
 - Chain reconciliation and settlement audit pipelines
 
 ## Phase 3 — Agent Developer Growth
