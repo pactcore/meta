@@ -1,52 +1,60 @@
-# PACT Runtime Specification (Draft v0.2)
+# PACT Runtime Specification (Draft v0.2 Stage-2)
 
-This spec defines minimum runtime behavior expected from agent implementations integrating with PACT.
+This document defines the minimum runtime behavior for `core` and SDK-integrated workers.
 
-## 1. Loop Contract
+## 1) Worker Loop Contract
 
-A conforming worker runtime should follow:
+Conforming runtimes follow:
 
 ```text
-poll events -> claim mission -> execute -> emit evidence -> submit -> checkpoint -> repeat
+poll events -> claim mission -> execute -> submit evidence -> checkpoint -> repeat
 ```
 
-## 2. Required Guarantees
+Required guarantees:
 
-1. **Deterministic progression**
-   - runtime must not skip protocol lifecycle constraints
-2. **Replayability**
-   - runtime should process events via cursor semantics and support replay
-3. **Recoverability**
-   - runtime should persist checkpoints between loop iterations
-4. **Policy enforcement**
-   - claim/submit actions must pass capability/policy checks
-5. **Auditability**
-   - mission-critical actions should map to protocol events
+1. deterministic state progression
+2. replayable event cursor handling
+3. persisted checkpoints for recovery
+4. capability policy enforcement on mission actions
+5. event-linked auditability for mission/economic side effects
 
-## 3. Mission Governance Behavior
+## 2) Mission Governance Contract
 
-- conflicting verdicts should trigger challenge/escalation flow
+- conflicting verdicts must open challenge/escalation flow
 - low-confidence approvals may be escalated by policy
-- failed missions may be retried only within bounded limits (`maxRetries`)
-- challenge resolution determines final mission status (`Settled` or `Failed`)
+- retries are bounded by mission `maxRetries`
+- challenge resolution decides terminal state (`Settled` or `Failed`)
 
-## 4. Economic Behavior (Human-Agent Parity)
+## 3) Economic Runtime Contract
 
-- humans and agents are both valid issuers and workers
-- compensation should be modeled as explicit legs (payer/payee/asset/amount/unit)
-- mixed-asset settlement is valid when model constraints pass policy checks
-- reference-asset valuation should be explicit (rate source + as-of timestamp)
-- settlement planning should map each asset class to a deterministic settlement rail
-- settlement side effects must remain auditable and event-linked
+- compensation models must be schema-valid before execution
+- stage-1 supports valuation registration, reference quoting, and settlement rail planning
+- stage-2 executes non-stablecoin legs through dedicated settlement connectors
 
-## 5. Supervisory Behavior
+Connector mapping:
 
-- heartbeat tasks are independent from mission loops
-- heartbeat execution should be schedulable and observable via events
-- supervisory tasks must not bypass capability policy boundaries
+- `llm_metering` -> metering credits
+- `cloud_billing` -> billing credits
+- `api_quota` -> quota allocation
 
-## 6. Interop Expectations (core <-> sdk)
+## 4) Settlement Audit Contract
 
-- runtime event payloads should maintain stable field names for cursors and identifiers
-- additive fields are allowed in minor versions
-- breaking semantic changes require major version upgrade coordination
+For each executed non-stablecoin leg, runtime must persist a settlement record containing:
+
+- `id`, `settlementId`, `legId`
+- `assetId`, `amount`, `unit`
+- `payerId`, `payeeId`
+- `rail`, `connector`
+- `status`, `externalReference`, `createdAt`
+- optional `connectorMetadata`
+
+Runtime must emit:
+
+- `economics.settlement_record_created` per record
+- `economics.settlement_executed` per execution batch
+
+## 5) Interop Contract (core <-> sdk)
+
+- SDK settlement helpers must generate valid execute payloads for core APIs
+- SDK runtime must support settlement record query by filter (`settlementId`, `assetId`, `rail`, `payerId`, `payeeId`)
+- additive fields are minor-compatible; semantic breaks require major coordination

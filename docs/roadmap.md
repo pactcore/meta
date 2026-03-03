@@ -19,9 +19,13 @@
 - On-chain contract integration (`contracts` repo)
 - Challenge/appeal and dispute pathways for validator disagreement
 - Multi-asset settlement connectors (stablecoin + token budgets + credits + quotas)
+  - Stage-2 shipped in-memory connectors for `llm_metering`, `cloud_billing`, `api_quota`
 - Cross-asset valuation adapters (reference quote + source-of-truth rates)
+  - Stage-1 shipped valuation registry + reference quote API
 - Deterministic settlement-rail planning by asset class
+  - Stage-1 shipped settlement-plan rail mapping API
 - Chain reconciliation and settlement audit pipelines
+  - Stage-2 shipped settlement record API + economics settlement events
 
 ## Phase 3 — Agent Developer Growth
 

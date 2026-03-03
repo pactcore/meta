@@ -1,64 +1,71 @@
-# PACT Economic Framework (Human-Agent Parity)
+# PACT Economic Framework (v0.2 Stage-2)
 
-## 1) Core Principle
+## 1) Participant Parity
 
-PACT models humans and agents as equal protocol participants.
+Humans and agents are equal protocol actors.
 
 Both can:
 
-- publish work
-- complete work
-- validate outcomes
-- receive compensation
+- issue missions/tasks
+- fulfill missions/tasks
+- receive settlement
 
-## 2) Compensation Abstraction
+## 2) Multi-Asset Compensation Model
 
-Compensation is represented as protocol legs:
+Compensation uses explicit legs:
 
-- payer
-- payee
-- asset
-- amount
-- unit
+- `payerId`
+- `payeeId`
+- `assetId`
+- `amount`
+- `unit`
 
-This allows mixed settlement in a single mission.
+Supported asset classes:
 
-## 3) Asset Classes
+- `usdc` / `stablecoin`
+- `llm_token`
+- `cloud_credit`
+- `api_quota`
+- `custom`
 
-Initial classes supported in architecture:
-
-- stablecoin (USDC and similar)
-- LLM token budget allocation
-- cloud compute credits
-- API quota credits (search, social, data APIs)
-
-## 4) Governance Constraints
-
-- settlement requires protocol-valid lifecycle progress
-- compensation models must pass schema validation
-- disputes and low-confidence outcomes can trigger escalation
-- retry and challenge flows are bounded by policy
-
-## 5) System Effects
-
-This model allows work markets where payment is aligned to task nature:
-
-- monetary-heavy jobs -> stablecoin dominant
-- inference-heavy jobs -> token dominant
-- infra-heavy jobs -> cloud/API credit dominant
-- mixed jobs -> blended compensation models
-
-## 6) Execution Primitives (v0.2.x trajectory)
+## 3) Stage-1 Execution (Implemented)
 
 - asset registry
-- compensation model validation
-- grouped quote by asset
-- reference-asset valuation quote
-- settlement-rail planning by asset class
+- valuation registry (`assetId -> referenceAssetId`, `rate`, `asOf`, `source`)
+- reference-asset quote
+- deterministic settlement rail planning by asset class
 
-## 7) Next Governance Work
+## 4) Stage-2 Connector Semantics (Implemented)
 
-- production settlement connectors across asset classes
-- treasury policy by asset type
-- cross-asset fee logic
-- challenge anti-spam economics
+Non-stablecoin rails are executed through connector interfaces:
+
+- `llm_token` -> `llm_metering` -> metering-credit connector (`applyMeteringCredit`)
+- `cloud_credit` -> `cloud_billing` -> billing-credit connector (`applyBillingCredit`)
+- `api_quota` -> `api_quota` -> quota-allocation connector (`allocateQuota`)
+
+Current implementation is in-memory connectors used by `core` runtime wiring.
+
+## 5) Settlement Audit Contract (Implemented)
+
+Each non-stablecoin settlement leg generates an auditable settlement record:
+
+- identity: `id`, `settlementId`, `legId`
+- economics: `assetId`, `amount`, `unit`, `payerId`, `payeeId`
+- routing: `rail`, `connector`
+- execution: `status`, `externalReference`, `createdAt`
+- optional connector payload: `connectorMetadata`
+
+Events emitted:
+
+- `economics.settlement_record_created` (per recorded leg)
+- `economics.settlement_executed` (per settlement execution batch)
+
+## 6) API Contract Surface (Implemented)
+
+Minimal execution/query endpoints:
+
+- `POST /economics/settlements/execute`
+- `GET /economics/settlements/records`
+- `GET /economics/settlements/records/:id`
+
+These endpoints expose connector-backed execution records and are intended for audit/reconciliation flows.
