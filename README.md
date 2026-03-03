@@ -50,6 +50,8 @@ In short: **core defines truth, sdk scales intelligence, meta aligns the ecosyst
 
 - `docs/roadmap.md`
 - `docs/agent-product-principles.md`
+- `docs/terminology.md`
+- `docs/runtime-spec.md`
 
 ## Next Suggested Repositories
 
