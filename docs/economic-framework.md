@@ -1,4 +1,4 @@
-# PACT Economic Framework (v0.2 Stage-2)
+# PACT Economic Framework (v0.2 Stage-3)
 
 ## 1) Participant Parity
 
@@ -60,12 +60,38 @@ Events emitted:
 - `economics.settlement_record_created` (per recorded leg)
 - `economics.settlement_executed` (per settlement execution batch)
 
-## 6) API Contract Surface (Implemented)
+## 6) Stage-3 Reconciliation Contract (Implemented)
+
+Settlement records now follow explicit lifecycle:
+
+- `applied` (connector executed)
+- `reconciled` (external connector/accounting state verified)
+
+Reconciliation operation:
+
+- endpoint: `POST /economics/settlements/records/:id/reconcile`
+- expected output: updated settlement record with:
+  - `status = reconciled`
+  - optional `reconciledAt`, `reconciledBy`, `reconciliationNote`
+- lifecycle audit event emitted:
+  - `economics.settlement_record_reconciled`
+
+Durability + replay expectations:
+
+- settlement record storage is abstracted behind repository contract
+- query supports filter pagination (`cursor`, `limit`)
+- lifecycle replay supports offset pagination (`fromOffset`, `limit`)
+- replay entries are append-only and include lifecycle action (`created` | `reconciled`)
+
+## 7) API Contract Surface (Implemented)
 
 Minimal execution/query endpoints:
 
 - `POST /economics/settlements/execute`
 - `GET /economics/settlements/records`
+- `GET /economics/settlements/records/page`
+- `GET /economics/settlements/records/replay`
 - `GET /economics/settlements/records/:id`
+- `POST /economics/settlements/records/:id/reconcile`
 
 These endpoints expose connector-backed execution records and are intended for audit/reconciliation flows.
