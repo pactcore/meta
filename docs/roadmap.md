@@ -1,11 +1,11 @@
 # PACT Ecosystem Roadmap
 
-## Batch 36 Status (2026-03-10)
+## Current Status (2026-03-10)
 
-- Synced `meta` against `core` commit `146a81f`, `sdk` commit `d4834f4`, `contracts` commit `15e84d0`, and `landing-and-whitepaper` commit `d30f8c3`.
-- `production-hardening` shipped in the latest core delta: env-configured live settlement adapters, provider-profile loaders, fetch-backed settlement transports, signer abstractions, RPC/indexer finality sync with reorg hooks, managed-backend health contracts for data/compute/dev, and Appendix C manifest/runtime/receipt APIs.
+- Synced `meta` against `core` commit `98a5945`, `sdk` commit `6ad52fa`, `contracts` commit `15e84d0`, and `landing-and-whitepaper` commit `b116c00`.
+- `production-hardening` shipped in the latest core delta: shared remote managed-backend health helpers, remote queue/store/observability skeleton adapters, exported managed-backend skeleton surfaces, and expanded contract coverage across data/compute/dev.
 - `implemented` in the current contracts delta: Appendix B escrow, pay-router, identity, staking, governance, and rewards contracts remain the landed on-chain surface; no newer contracts commit changed matrix status in this sync.
-- `implemented` in SDK parity: on-chain finality queries, Appendix C receipt accessors, managed-backend health endpoints, reconciliation queue/summary helpers, and idempotency-aware settlement execution.
+- `implemented` in SDK parity: on-chain finality queries, Appendix C receipt accessors, managed-backend health endpoints that accept summary or live-backend list payloads, reconciliation queue/summary helpers, stablecoin-bridge queue filters, and idempotency-aware settlement execution.
 - Remaining `production-hardening` blockers: real managed queue/store/observability providers, production signer custody + persistent indexer backends, live external billing/quota providers beyond env-backed transports, non-skeleton remote prover operations, and developer-facing examples/framework adapters.
 
 ## Phase 0 — Foundation (Now)
@@ -24,7 +24,7 @@
 ## Phase 2 — Trust and Settlement Expansion
 
 - `production-hardening`: production adapters for storage, queues, and observability
-  Shipped local managed-backend contracts and health summaries for data/compute/dev plus a remote queue skeleton path.
+  Shipped local managed-backend contracts and health summaries for data/compute/dev plus remote queue/store/observability skeleton adapters and SDK parity for live-backend health payloads.
   Blocker: real managed queue/store/observability providers and persistent operational backends.
 - `implemented`: on-chain contract integration (`contracts` repo)
 - `implemented`: protocol-level challenge/appeal and dispute pathways for validator disagreement
@@ -43,7 +43,7 @@
 ## Phase 3 — Agent Developer Growth
 
 - `future work`: launch `examples` with worker/validator agent templates
-- `implemented`: SDK modules for mission/events/policy/evidence/agent runtime, plus economics/data/compute/dev parity, managed-backend health endpoints, and on-chain finality/Appendix C parity
+- `implemented`: SDK modules for mission/events/policy/evidence/agent runtime, plus economics/data/compute/dev parity, managed-backend health endpoints, stablecoin-bridge reconciliation filters, and on-chain finality/Appendix C parity
 - `future work`: framework adapters (Next.js, NestJS, Workers)
 - `future work`: multi-language SDK strategy planning
 
