@@ -2,10 +2,10 @@
 
 ## Current Status (2026-03-10)
 
-- Synced `meta` against latest code-bearing commits `core` `26b66d0`, `sdk` `c9c289d`, `contracts` `15e84d0`, and `landing-and-whitepaper` branch `docs/batch-34-traceability-sync` at `b7f4ac1`.
-- `production-hardening` shipped in the latest core delta: credential-aware remote queue/store/observability skeleton health with explicit missing-endpoint errors, hashed managed-store etags plus prefix-aware pagination, request-digest and idempotency-header hardening for live settlement transports, lifecycle mirroring for data/compute/dev managed backends, and stricter EVM bridge contract-address validation plus pending-nonce synchronization.
+- Synced `meta` against latest code-bearing commits `core` `8d33fad`, `sdk` `cc952fb`, `contracts` `15e84d0`, and `landing-and-whitepaper` branch `docs/batch-34-traceability-sync` at latest docs commit `e9e6ea1`.
+- `production-hardening` shipped in the latest core delta: credential-aware remote queue/store/observability skeleton health with explicit missing-endpoint errors, hashed managed-store etags plus prefix-aware pagination, request-digest and idempotency-header hardening for live settlement transports, lifecycle mirroring for data/compute/dev managed backends, stricter EVM bridge contract-address validation plus pending-nonce synchronization, and Appendix C manifest-catalog plus remote prover health/config hardening.
 - `implemented` in the current contracts delta: Appendix B escrow, pay-router, identity, staking, governance, and rewards contracts remain the landed on-chain surface; no newer contracts commit changed matrix status in this sync.
-- `implemented` in SDK parity: on-chain finality queries plus transaction tracking/inclusion/canonical-block writes, bridge type contracts, managed-backend adapter contracts, settlement runtime helpers and connector transport/profile types, stablecoin-bridge settlement request/result types, reconciliation queue/summary helpers, stablecoin-bridge queue filters, idempotency-aware settlement execution, and Appendix C bridge runtime/manifest accessors with external prover request/verify types.
+- `implemented` in SDK parity: on-chain finality queries plus transaction tracking/inclusion/canonical-block writes, bridge type contracts, widened managed-backend health/profile contracts, settlement runtime helpers and connector transport/profile types, stablecoin-bridge settlement request/result types, reconciliation queue/summary helpers, stablecoin-bridge queue filters, idempotency-aware settlement execution, and Appendix C bridge runtime/manifest accessors with external prover request/verify types.
 - Remaining `production-hardening` blockers: real managed queue/store/observability providers, production signer custody + persistent indexer backends, live external billing/quota providers beyond env-backed transports, non-skeleton remote prover operations, and developer-facing examples/framework adapters.
 
 ## Phase 0 — Foundation (Now)
@@ -53,7 +53,7 @@
 ## Appendix C Track
 
 - `production-hardening`: zk bridge/runtime APIs, artifact manifests, and verification receipts
-  Shipped bridge runtime metadata, manifest versioning, deterministic local prover integration, remote HTTP skeleton coverage, SDK receipt/runtime/manifest accessors, and external prover request/verify contract types.
+  Shipped bridge runtime metadata, manifest versioning, manifest-catalog health classification, env/profile-backed remote prover config loading, deterministic local prover integration, remote HTTP skeleton coverage, SDK receipt/runtime/manifest accessors, and external prover request/verify contract types.
   Blocker: externally operated prover services and production artifact distribution.
 
 ## Phase 4 — Network Effects and Governance
