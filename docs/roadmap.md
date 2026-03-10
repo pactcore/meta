@@ -46,7 +46,6 @@
 ## Phase 3 — Agent Developer Growth
 
 - `future work`: launch `examples` with worker/validator agent templates
-- `implemented`: SDK modules for mission/events/policy/evidence/agent runtime, plus economics/data/compute/dev parity, managed-backend health endpoints and adapter contracts, settlement runtime helpers, stablecoin-bridge connector contracts and reconciliation filters, and on-chain finality/Appendix C runtime-manifest parity
 - `implemented`: SDK modules for mission/events/policy/evidence/agent runtime, plus economics/data/compute/dev parity, managed-backend health endpoints and adapter contracts, settlement runtime helpers, stablecoin-bridge connector contracts and reconciliation filters, richer health/runtime metadata parity, and on-chain finality/Appendix C runtime-manifest parity
 - `future work`: framework adapters (Next.js, NestJS, Workers)
 - `future work`: multi-language SDK strategy planning
