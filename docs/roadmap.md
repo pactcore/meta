@@ -2,8 +2,8 @@
 
 ## Current Status (2026-03-10)
 
-- Synced `meta` against latest code-bearing commits `core` `cc89f34`, `sdk` `c9c289d`, `contracts` `15e84d0`, and `landing-and-whitepaper` branch `docs/batch-34-traceability-sync` at `b7f4ac1`.
-- `production-hardening` shipped in the latest core delta: env-configured managed-backend inventory loading, credential-aware remote queue/store/observability skeleton health, hashed managed-store etags plus prefix-aware pagination, metadata-preserving live settlement connector normalization, lifecycle mirroring for data/compute/dev managed backends, and stricter EVM bridge contract-address validation.
+- Synced `meta` against latest code-bearing commits `core` `26b66d0`, `sdk` `c9c289d`, `contracts` `15e84d0`, and `landing-and-whitepaper` branch `docs/batch-34-traceability-sync` at `b7f4ac1`.
+- `production-hardening` shipped in the latest core delta: credential-aware remote queue/store/observability skeleton health with explicit missing-endpoint errors, hashed managed-store etags plus prefix-aware pagination, request-digest and idempotency-header hardening for live settlement transports, lifecycle mirroring for data/compute/dev managed backends, and stricter EVM bridge contract-address validation plus pending-nonce synchronization.
 - `implemented` in the current contracts delta: Appendix B escrow, pay-router, identity, staking, governance, and rewards contracts remain the landed on-chain surface; no newer contracts commit changed matrix status in this sync.
 - `implemented` in SDK parity: on-chain finality queries plus transaction tracking/inclusion/canonical-block writes, bridge type contracts, managed-backend adapter contracts, settlement runtime helpers and connector transport/profile types, stablecoin-bridge settlement request/result types, reconciliation queue/summary helpers, stablecoin-bridge queue filters, idempotency-aware settlement execution, and Appendix C bridge runtime/manifest accessors with external prover request/verify types.
 - Remaining `production-hardening` blockers: real managed queue/store/observability providers, production signer custody + persistent indexer backends, live external billing/quota providers beyond env-backed transports, non-skeleton remote prover operations, and developer-facing examples/framework adapters.
@@ -27,9 +27,12 @@
   Shipped env-configured managed-backend inventory loading, local managed-backend contracts and health summaries for data/compute/dev, lifecycle mirroring of data publications/integrity proofs, compute job/checkpoint outcomes, and dev integration/template/policy events into managed queue/store/observability surfaces, remote queue/store/observability skeleton adapters, and SDK parity for live-backend health payloads and adapter contracts.
   Blocker: real managed queue/store/observability providers and persistent operational backends.
 - `implemented`: on-chain contract integration (`contracts` repo)
+- `production-hardening`: on-chain bridge configuration and nonce management
+  Shipped normalized non-zero unique contract-address validation and RPC-backed pending-nonce synchronization in `core`, plus SDK helpers to track transactions, record transaction inclusion, and record canonical blocks.
+  Blocker: live deployment registries, persistent finality indexer operations, and signer custody.
 - `implemented`: protocol-level challenge/appeal and dispute pathways for validator disagreement
 - `production-hardening`: multi-asset settlement connectors (stablecoin + token budgets + credits + quotas)
-  Shipped stablecoin routing/splits plus provider-authenticated live-facing connectors for `llm_metering`, `cloud_billing`, and `api_quota`, including retries, circuit-breaker state, idempotency, and provider-profile loading.
+  Shipped stablecoin routing/splits plus provider-authenticated live-facing connectors for `llm_metering`, `cloud_billing`, and `api_quota`, including request digests, idempotency headers, retries, circuit-breaker state, idempotency, and provider-profile loading.
   Blocker: production provider rollout, secret management, and audited upstream integrations.
 - `production-hardening`: cross-asset valuation adapters (reference quote + source-of-truth rates)
   Shipped stage-1 valuation registry + reference quote API.
@@ -43,7 +46,7 @@
 ## Phase 3 — Agent Developer Growth
 
 - `future work`: launch `examples` with worker/validator agent templates
-- `implemented`: SDK modules for mission/events/policy/evidence/agent runtime, plus economics/data/compute/dev parity, managed-backend health endpoints and adapter contracts, settlement runtime helpers, stablecoin-bridge reconciliation filters, and on-chain finality/Appendix C runtime-manifest parity
+- `implemented`: SDK modules for mission/events/policy/evidence/agent runtime, plus economics/data/compute/dev parity, managed-backend health endpoints and adapter contracts, settlement runtime helpers, stablecoin-bridge connector contracts and reconciliation filters, and on-chain finality/Appendix C runtime-manifest parity
 - `future work`: framework adapters (Next.js, NestJS, Workers)
 - `future work`: multi-language SDK strategy planning
 
