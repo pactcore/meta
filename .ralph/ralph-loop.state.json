@@ -1,14 +1,13 @@
 {
   "active": true,
-  "iteration": 71,
+  "iteration": 72,
   "minIterations": 1,
   "maxIterations": 0,
-  "completionPromise": "WHITEPAPER_SCOPE_COMPLETE",
-  "abortPromise": "EXTERNAL_BLOCKER",
+  "completionPromise": "COMPLETE",
   "tasksMode": false,
   "taskPromise": "READY_FOR_NEXT_TASK",
-  "prompt": "You are continuing the PACT whitepaper implementation docs sync in the `pact-meta` repository.\n\nMission:\n- Keep the whitepaper implementation matrix and roadmap synchronized to the latest landed code across core, sdk, contracts, and landing.\n- Prefer precise doc updates with code/test references.\n\nExecution rules:\n- Inspect the latest commits across the sibling repos before editing docs.\n- Update `docs/whitepaper-implementation-matrix.md` and `docs/roadmap.md` whenever the shipped state has changed.\n- Keep taxonomy consistent: `implemented`, `production-hardening`, `simulation`, `future work`.\n- Commit messages must describe the actual docs sync and must not mention batch numbers.\n- For larger doc refreshes touching multiple files or cross-repo references, use a descriptive branch, open a PR into `main`, then merge it yourself once checks are green.\n- For small safe docs syncs, direct commits are acceptable.\n- Do not stop to ask questions.\n- Do not output the completion promise until the matrix accurately reflects the current shipped state and there are no stale references left to clean in this repo.\n\nCompletion promise:\n<promise>WHITEPAPER_SCOPE_COMPLETE</promise>\n\nAbort promise if a hard external blocker makes further progress impossible:\n<promise>EXTERNAL_BLOCKER</promise>\n",
-  "startedAt": "2026-03-10T17:59:20.176Z",
+  "prompt": "You are continuing the PACT whitepaper implementation docs sync in the `pact-meta` repository.\n\nMission:\n- Keep the whitepaper implementation matrix and roadmap synchronized to the latest landed code across core, sdk, contracts, and landing.\n- Prefer precise doc updates with code/test references.\n\nExecution rules:\n- Inspect the latest commits across the sibling repos before editing docs.\n- Update `docs/whitepaper-implementation-matrix.md` and `docs/roadmap.md` whenever the shipped state has changed.\n- Keep taxonomy consistent: `implemented`, `production-hardening`, `simulation`, `future work`.\n- Commit and push to `origin/main` whenever there is a real docs sync to land.\n- Do not stop to ask questions.\n- Do not output the completion promise until the matrix accurately reflects the current shipped state and there are no stale references left to clean in this repo.\n\nCompletion promise:\n<promise>WHITEPAPER_SCOPE_COMPLETE</promise>\n\nAbort promise if a hard external blocker makes further progress impossible:\n<promise>EXTERNAL_BLOCKER</promise>\n",
+  "startedAt": "2026-03-10T17:48:44.609Z",
   "model": "gpt-5.4",
   "agent": "codex"
 }
