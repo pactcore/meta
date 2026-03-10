@@ -2,10 +2,10 @@
 
 ## Current Status (2026-03-10)
 
-- Synced `meta` against `core` commit `37eeeec`, `sdk` commit `c9f5c32`, `contracts` commit `15e84d0`, and `landing-and-whitepaper` branch `docs/batch-34-traceability-sync` at `e5d8eca`.
-- `production-hardening` shipped in the latest core delta: env-configured managed-backend inventory loading, credential-aware remote queue/store/observability skeleton health, hashed managed-store etags plus prefix-aware pagination, metadata-preserving live settlement connector normalization, and expanded contract coverage across data/compute/dev.
+- Synced `meta` against latest code-bearing commits `core` `cc89f34`, `sdk` `c9c289d`, `contracts` `15e84d0`, and `landing-and-whitepaper` branch `docs/batch-34-traceability-sync` at `b7f4ac1`.
+- `production-hardening` shipped in the latest core delta: env-configured managed-backend inventory loading, credential-aware remote queue/store/observability skeleton health, hashed managed-store etags plus prefix-aware pagination, metadata-preserving live settlement connector normalization, lifecycle mirroring for data/compute/dev managed backends, and stricter EVM bridge contract-address validation.
 - `implemented` in the current contracts delta: Appendix B escrow, pay-router, identity, staking, governance, and rewards contracts remain the landed on-chain surface; no newer contracts commit changed matrix status in this sync.
-- `implemented` in SDK parity: on-chain finality queries plus bridge type contracts, managed-backend adapter contracts, settlement runtime helpers and connector transport/profile types, reconciliation queue/summary helpers, stablecoin-bridge queue filters, idempotency-aware settlement execution, and Appendix C bridge runtime/manifest accessors with external prover request/verify types.
+- `implemented` in SDK parity: on-chain finality queries plus transaction tracking/inclusion/canonical-block writes, bridge type contracts, managed-backend adapter contracts, settlement runtime helpers and connector transport/profile types, stablecoin-bridge settlement request/result types, reconciliation queue/summary helpers, stablecoin-bridge queue filters, idempotency-aware settlement execution, and Appendix C bridge runtime/manifest accessors with external prover request/verify types.
 - Remaining `production-hardening` blockers: real managed queue/store/observability providers, production signer custody + persistent indexer backends, live external billing/quota providers beyond env-backed transports, non-skeleton remote prover operations, and developer-facing examples/framework adapters.
 
 ## Phase 0 — Foundation (Now)
@@ -24,7 +24,7 @@
 ## Phase 2 — Trust and Settlement Expansion
 
 - `production-hardening`: production adapters for storage, queues, and observability
-  Shipped env-configured managed-backend inventory loading, local managed-backend contracts and health summaries for data/compute/dev, remote queue/store/observability skeleton adapters, and SDK parity for live-backend health payloads and adapter contracts.
+  Shipped env-configured managed-backend inventory loading, local managed-backend contracts and health summaries for data/compute/dev, lifecycle mirroring of data publications/integrity proofs, compute job/checkpoint outcomes, and dev integration/template/policy events into managed queue/store/observability surfaces, remote queue/store/observability skeleton adapters, and SDK parity for live-backend health payloads and adapter contracts.
   Blocker: real managed queue/store/observability providers and persistent operational backends.
 - `implemented`: on-chain contract integration (`contracts` repo)
 - `implemented`: protocol-level challenge/appeal and dispute pathways for validator disagreement
