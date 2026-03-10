@@ -1,5 +1,12 @@
 # PACT Ecosystem Roadmap
 
+## Batch 34 Status (2026-03-10)
+
+- Synced `meta` against `core` commit `a6bdfb3` and `sdk` commit `811f4ff`.
+- Shipped in the latest core/sdk delta: settlement connector idempotency + health/reset APIs, reconciliation run/pending views, compute checkpoint/retry/cancel runtime contracts, file-backed data-asset metadata, and adapter health summaries for data/compute/dev.
+- Shipped in SDK parity: economics reconciliation/connector helpers plus compute/data/dev runtime and health endpoints.
+- Remaining blockers: provider-authenticated live settlement connectors, live signer/RPC finality + reorg-safe on-chain execution, managed storage/queue/observability backends, production zk circuits/provers, and developer-facing examples/framework adapters.
+
 ## Phase 0 — Foundation (Now)
 
 - Establish `core`, `sdk`, and `meta`
@@ -8,31 +15,34 @@
 
 ## Phase 1 — Agent Runtime Hardening
 
-- Add mission envelopes and context persistence in `core`
-- Add event inbox/outbox semantics and replayable journals
-- Publish capability policy model for autonomous action control
-- Publish compatibility matrix (`core` <-> `sdk`)
+- Shipped mission envelopes and context persistence in `core`
+- Shipped event inbox/outbox semantics and replayable journals
+- Shipped capability policy model for autonomous action control
+- Shipped compatibility matrix and parity surface (`core` <-> `sdk`)
 
 ## Phase 2 — Trust and Settlement Expansion
 
-- Production adapters for storage, queues, and observability
-- On-chain contract integration (`contracts` repo)
-- Challenge/appeal and dispute pathways for validator disagreement
-- Multi-asset settlement connectors (stablecoin + token budgets + credits + quotas)
-  - Stage-2 shipped in-memory connectors for `llm_metering`, `cloud_billing`, `api_quota`
-- Cross-asset valuation adapters (reference quote + source-of-truth rates)
-  - Stage-1 shipped valuation registry + reference quote API
-- Deterministic settlement-rail planning by asset class
-  - Stage-1 shipped settlement-plan rail mapping API
-- Chain reconciliation and settlement audit pipelines
-  - Stage-2 shipped settlement record API + economics settlement events
+- In progress: production adapters for storage, queues, and observability
+- Shipped on-chain contract integration (`contracts` repo)
+- Shipped protocol-level challenge/appeal and dispute pathways for validator disagreement
+- In progress: multi-asset settlement connectors (stablecoin + token budgets + credits + quotas)
+  - Shipped stablecoin routing/splits plus stage-2 in-memory connectors for `llm_metering`, `cloud_billing`, `api_quota`
+  - Blocker: provider-authenticated live billing, quota, and credit connectors
+- In progress: cross-asset valuation adapters (reference quote + source-of-truth rates)
+  - Shipped stage-1 valuation registry + reference quote API
+  - Blocker: live source-of-truth rate providers
+- In progress: deterministic settlement-rail planning by asset class
+  - Shipped stage-1 settlement-plan rail mapping API
+- In progress: chain reconciliation and settlement audit pipelines
+  - Shipped stage-2 settlement record API, economics settlement events, reconciliation run/pending views, and connector health/reset flows
+  - Blocker: live signer, RPC confirmation/finality, and reorg-safe indexer handling
 
 ## Phase 3 — Agent Developer Growth
 
-- Launch `examples` with worker/validator agent templates
-- Add SDK modules: mission/events/policy/evidence/agent runtime
-- Framework adapters (Next.js, NestJS, Workers)
-- Multi-language SDK strategy planning
+- In progress: launch `examples` with worker/validator agent templates
+- Shipped SDK modules for mission/events/policy/evidence/agent runtime, plus economics/data/compute/dev parity
+- Future work: framework adapters (Next.js, NestJS, Workers)
+- Future work: multi-language SDK strategy planning
 
 ## Phase 4 — Network Effects and Governance
 
