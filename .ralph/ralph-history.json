@@ -7552,9 +7552,24 @@
       "errors": [
         "ERROR: unexpected status 401 Unauthorized: {\"error\":\"Invalid API key\",\"message\":\"API key is disabled\"}, url: https://cc.cygnus.ink/openai/responses, cf-ray: 9da4fae97ffa5a2e-SJC, request id: qkpo299mm"
       ]
+    },
+    {
+      "iteration": 446,
+      "startedAt": "2026-03-10T20:13:29.166Z",
+      "endedAt": "2026-03-10T20:13:36.002Z",
+      "durationMs": 6819,
+      "agent": "codex",
+      "model": "gpt-5.4",
+      "toolsUsed": {},
+      "filesModified": [],
+      "exitCode": 1,
+      "completionDetected": false,
+      "errors": [
+        "ERROR: unexpected status 401 Unauthorized: {\"error\":\"Invalid API key\",\"message\":\"API key is disabled\"}, url: https://cc.cygnus.ink/openai/responses, cf-ray: 9da4fb1aabe367cd-SJC, request id: xz07bht1p"
+      ]
     }
   ],
-  "totalDurationMs": 8216612,
+  "totalDurationMs": 8223431,
   "struggleIndicators": {
     "repeatedErrors": {
       "Reconnecting... 1/5 (stream disconnected before completion: Transport error: network error: error de": 3,
@@ -7703,9 +7718,9 @@
       "ERROR: exceeded retry limit, last status: 429 Too Many Requests, request id: wwfktm3kon": 1,
       "ERROR: exceeded retry limit, last status: 429 Too Many Requests, request id: iwrpkyvot8": 1,
       "ERROR: exceeded retry limit, last status: 429 Too Many Requests, request id: mlumr8bkxa": 1,
-      "ERROR: unexpected status 401 Unauthorized: {\"error\":\"Invalid API key\",\"message\":\"API key is disabled": 172
+      "ERROR: unexpected status 401 Unauthorized: {\"error\":\"Invalid API key\",\"message\":\"API key is disabled": 173
     },
-    "noProgressIterations": 0,
-    "shortIterations": 315
+    "noProgressIterations": 1,
+    "shortIterations": 316
   }
 }
