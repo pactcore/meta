@@ -1,4 +1,4 @@
-# PACT Economic Framework (v0.2 Stage-3)
+# PACT Economic Framework (Current Implementation Snapshot)
 
 ## 1) Participant Parity
 
@@ -28,24 +28,50 @@ Supported asset classes:
 - `api_quota`
 - `custom`
 
-## 3) Stage-1 Execution (Implemented)
+## 3) Stablecoin Settlement (`implemented`)
 
-- asset registry
-- valuation registry (`assetId -> referenceAssetId`, `rate`, `asOf`, `source`)
-- reference-asset quote
-- deterministic settlement rail planning by asset class
+The shipped stablecoin surface covers:
 
-## 4) Stage-2 Connector Semantics (Implemented)
+- deterministic routing and split execution
+- escrow + pay-router contract flows
+- staking and rewards settlement touchpoints
+- SDK economics helpers aligned to the on-chain surface
 
-Non-stablecoin rails are executed through connector interfaces:
+## 4) Non-Stablecoin Settlement (`production-hardening`)
+
+Non-stablecoin rails execute through dedicated connector contracts:
 
 - `llm_token` -> `llm_metering` -> metering-credit connector (`applyMeteringCredit`)
 - `cloud_credit` -> `cloud_billing` -> billing-credit connector (`applyBillingCredit`)
 - `api_quota` -> `api_quota` -> quota-allocation connector (`allocateQuota`)
 
-Current implementation is in-memory connectors used by `core` runtime wiring.
+Current shipped behavior includes:
 
-## 5) Settlement Audit Contract (Implemented)
+- merged JSON + env provider-profile loading
+- credential alias normalization
+- authenticated HTTP transport contracts
+- request/response digest validation
+- idempotency headers, retries, and circuit-breaker state
+- reconciliation-ready settlement record generation
+
+Remaining gap:
+
+- live provider deployments, secret rotation, and audited upstream integrations
+
+## 5) Valuation + Rail Planning
+
+Current shipped valuation/planning surface includes:
+
+- asset registry
+- valuation registry (`assetId -> referenceAssetId`, `rate`, `asOf`, `source`)
+- reference-asset quote API
+- deterministic settlement rail planning by asset class
+
+Remaining gap:
+
+- live source-of-truth rate providers beyond the current reference-quote stage
+
+## 6) Settlement Audit + Reconciliation (`production-hardening`)
 
 Each non-stablecoin settlement leg generates an auditable settlement record:
 
@@ -55,37 +81,26 @@ Each non-stablecoin settlement leg generates an auditable settlement record:
 - execution: `status`, `externalReference`, `createdAt`
 - optional connector payload: `connectorMetadata`
 
-Events emitted:
+Settlement records follow explicit lifecycle:
 
-- `economics.settlement_record_created` (per recorded leg)
-- `economics.settlement_executed` (per settlement execution batch)
+- `applied`
+- `reconciled`
 
-## 6) Stage-3 Reconciliation Contract (Implemented)
+Current shipped reconciliation surface includes:
 
-Settlement records now follow explicit lifecycle:
+- repository-backed durable settlement record contracts
+- filter + cursor pagination for queries
+- offset-based lifecycle replay
+- explicit reconciliation metadata (`reconciledAt`, `reconciledBy`, `reconciliationNote`)
+- economics settlement events plus reorg-aware on-chain bridge hooks
 
-- `applied` (connector executed)
-- `reconciled` (external connector/accounting state verified)
+Remaining gap:
 
-Reconciliation operation:
+- persistent production indexer storage and operator-grade multi-network operations
 
-- endpoint: `POST /economics/settlements/records/:id/reconcile`
-- expected output: updated settlement record with:
-  - `status = reconciled`
-  - optional `reconciledAt`, `reconciledBy`, `reconciliationNote`
-- lifecycle audit event emitted:
-  - `economics.settlement_record_reconciled`
+## 7) API Contract Surface
 
-Durability + replay expectations:
-
-- settlement record storage is abstracted behind repository contract
-- query supports filter pagination (`cursor`, `limit`)
-- lifecycle replay supports offset pagination (`fromOffset`, `limit`)
-- replay entries are append-only and include lifecycle action (`created` | `reconciled`)
-
-## 7) API Contract Surface (Implemented)
-
-Minimal execution/query endpoints:
+Current execution/query endpoints:
 
 - `POST /economics/settlements/execute`
 - `GET /economics/settlements/records`
@@ -94,4 +109,14 @@ Minimal execution/query endpoints:
 - `GET /economics/settlements/records/:id`
 - `POST /economics/settlements/records/:id/reconcile`
 
-These endpoints expose connector-backed execution records and are intended for audit/reconciliation flows.
+These endpoints expose connector-backed execution records for audit and reconciliation flows.
+
+## 8) Current Whitepaper Implementation Gaps
+
+The economic model is no longer blocked on protocol shape.
+The remaining gaps are productionization work:
+
+- managed database, queue, and observability backends
+- live external billing/quota integrations
+- production signer custody and finality/indexer operations
+- examples and framework adapters for builder adoption

@@ -6,11 +6,13 @@ It defines how protocol execution, agent tooling, and ecosystem expansion fit in
 ## Repositories
 
 - [`pactcore/core`](https://github.com/pactcore/core)
-  - Protocol engine: lifecycle invariants, validation, matching, reputation, settlement.
+  - Protocol engine: lifecycle invariants, validation, matching, reputation, settlement, and bridge/runtime coordination.
 - [`pactcore/sdk`](https://github.com/pactcore/sdk)
-  - Agent-builder toolkit: typed client plus future mission/event/policy runtimes.
+  - Agent-builder toolkit: typed client, runtime parity types, settlement helpers, managed-backend health contracts, and bridge/onchain/ZK accessors.
+- [`pactcore/contracts`](https://github.com/pactcore/contracts)
+  - On-chain contracts: escrow, pay-router, identity, staking, governance, rewards, and commerce-layer surfaces.
 - [`pactcore/meta`](https://github.com/pactcore/meta) (this repo)
-  - Standards, principles, roadmap, and cross-repo governance.
+  - Standards, principles, roadmap, implementation-gap tracking, and cross-repo governance.
 
 ## Narrative: Coordination Infrastructure for AI Agents
 
@@ -18,9 +20,10 @@ PACT evolves from a task protocol into a trust runtime for autonomous systems:
 
 1. **Execution truth** (`core`) — deterministic rules and settlement outcomes
 2. **Agent productivity** (`sdk`) — practical runtime tools for builders
-3. **Strategic coherence** (`meta`) — shared standards and long-horizon roadmap
+3. **Trust anchors** (`contracts`) — enforceable on-chain settlement and governance surfaces
+4. **Strategic coherence** (`meta`) — shared standards and long-horizon roadmap
 
-In short: **core defines truth, sdk scales intelligence, meta aligns the ecosystem**.
+In short: **core defines truth, sdk scales intelligence, contracts anchor settlement, meta aligns the ecosystem**.
 
 ## Ecosystem Blueprint
 
@@ -30,15 +33,15 @@ In short: **core defines truth, sdk scales intelligence, meta aligns the ecosyst
             │ standards + vision │
             └─────────┬──────────┘
                       │
-      ┌───────────────┴───────────────┐
-      │                               │
-┌─────▼─────┐                   ┌─────▼─────┐
-│   core    │                   │    sdk    │
-│ protocol  │                   │ agent dev │
-│ runtime   │                   │ runtime   │
-└─────┬─────┘                   └─────┬─────┘
-      │                               │
-      └───────────────┬───────────────┘
+      ┌───────────────┼───────────────┐
+      │               │               │
+┌─────▼─────┐   ┌─────▼─────┐   ┌─────▼─────┐
+│   core    │   │ contracts │   │    sdk    │
+│ protocol  │   │ on-chain  │   │ agent dev │
+│ runtime   │   │ anchors   │   │ runtime   │
+└─────┬─────┘   └─────┬─────┘   └─────┬─────┘
+      │               │               │
+      └───────────────┴───────────────┘
                       │
             ┌─────────▼─────────┐
             │ Apps / Agents /   │
@@ -49,6 +52,7 @@ In short: **core defines truth, sdk scales intelligence, meta aligns the ecosyst
 ## Documents in This Repo
 
 - `docs/roadmap.md`
+- `docs/implementation-gaps.md`
 - `docs/agent-product-principles.md`
 - `docs/terminology.md`
 - `docs/runtime-spec.md`
@@ -57,7 +61,6 @@ In short: **core defines truth, sdk scales intelligence, meta aligns the ecosyst
 
 ## Next Suggested Repositories
 
-- `pactcore/contracts` (on-chain contracts)
 - `pactcore/indexer` (event ingestion + query layer)
 - `pactcore/examples` (reference agent integrations)
 - `pactcore/governance` (tokenomics and protocol governance)

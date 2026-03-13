@@ -8,6 +8,7 @@
 - `implemented` in the current contracts surface: Appendix B escrow, pay-router, identity, staking, governance, and rewards contracts remain the landed on-chain surface, and `contracts:src/PactCommerce.sol` now hardens ERC-8183 commerce-hook execution with bounded-gas low-level calls, revert propagation, and human-judge completion coverage in `contracts:test/PactCommerce.t.sol`; no whitepaper-scoped status label changed in this sync.
 - `implemented` in SDK parity: managed-backend `requiredCredentialFields`, widened bridge feature maps, and live onchain indexer/finality route types now ship in `sdk:src/types.ts`, covered by `sdk:tests/client-batch36.test.ts`, `sdk:tests/type-parity-batch36.test.ts`, `sdk:tests/types-parity.test.ts`, and `sdk:tests/types-parity.test.js`; typed `getZKAdapterHealth` response coverage remains shipped in `sdk:src/client.ts` and `sdk:src/types.ts`.
 - Remaining `production-hardening` blockers: real managed queue/store/observability providers, production signer custody + persistent indexer backends, live external billing/quota providers beyond env-backed transports, externally operated prover services plus secret rotation/artifact distribution hardening, and developer-facing examples/framework adapters.
+- Detailed gap tracks and exit signals live in `docs/implementation-gaps.md`.
 
 ## Phase 0 — Foundation (Now)
 
